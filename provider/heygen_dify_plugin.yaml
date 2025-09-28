@@ -8,6 +8,8 @@ identity:
   icon: icon.svg
 tools:
   - tools/heygen_dify_plugin.yaml
+  - ../tools/heygen_dify_plugin.yaml
+  - ./tools/heygen_dify_plugin.yaml
 extra:
   python:
     source: provider/heygen_dify_plugin.py

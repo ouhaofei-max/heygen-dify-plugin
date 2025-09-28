@@ -54,7 +54,8 @@ jobs:
 
           # update temporary manifest to reference tools_dir and its entrypoint
           if [ -f tmp_release/manifest.yaml ]; then
-            sed -i 's|tools/heygen_dify_plugin.yaml|tools_dir/heygen_dify_plugin.yaml|' tmp_release/manifest.yaml || true
+            # Replace tools path in manifest to point to tools_dir and update entrypoint
+            sed -i 's|- tools/heygen_dify_plugin.yaml|- tools_dir/heygen_dify_plugin.yaml|' tmp_release/manifest.yaml || true
             sed -i 's|entrypoint: tools/tool.py:HeyGenTool|entrypoint: tools_dir/tool.py:HeyGenTool|' tmp_release/manifest.yaml || true
           fi
 

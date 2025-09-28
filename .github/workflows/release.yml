@@ -25,41 +25,12 @@ jobs:
 
           # manifest and common root assets
           cp manifest.yaml tmp_release/manifest.yaml || true
-          for f in README.md PRIVACY.md LICENSE requirements.txt; do
+          for f in README.md PRIVACY.md LICENSE requirements.txt icon.svg heygen_dify_plugin.yaml tool.py; do
             [ -f "$f" ] && cp "$f" tmp_release/ || true
           done
 
-          # provider: copy provider directory into tmp_release/provider/
-          if [ -d provider ]; then
-            mkdir -p tmp_release/provider
-            cp -r provider/* tmp_release/provider/ || true
-          elif [ -f provider/heygen_dify_plugin.yaml ]; then
-            mkdir -p tmp_release/provider
-            cp provider/heygen_dify_plugin.yaml tmp_release/provider/ || true
-          fi
-
-          # tools: copy tools directory into tmp_release/tools/ (keep directory structure)
-          if [ -d tools ]; then
-            mkdir -p tmp_release/tools
-            cp -r tools/* tmp_release/tools/ || true
-          else
-            # if tools is a single yaml file for some reason, place it under tmp_release/tools/
-            if [ -f tools/heygen_dify_plugin.yaml ]; then
-              mkdir -p tmp_release/tools
-              cp tools/heygen_dify_plugin.yaml tmp_release/tools/ || true
-            fi
-          fi
-
-          # copy provider_files and assets if present
-          [ -d provider_files ] && cp -r provider_files tmp_release/ || true
-          [ -d _assets ] && cp -r _assets tmp_release/ || true
-          [ -d assets ] && cp -r assets tmp_release/ || true
-
           # include difypkg if present
           [ -f heygen-dify-plugin.difypkg ] && cp heygen-dify-plugin.difypkg tmp_release/ || true
-
-          # No manifest rewrite necessary: keep manifest entrypoint and plugins.paths
-          # pointing to the original 'tools/' directory structure included above.
 
           # zip the tmp_release contents (root-level files inside zip)
           (cd tmp_release && zip -r ../release.zip .) || true

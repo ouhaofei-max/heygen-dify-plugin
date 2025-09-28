@@ -23,12 +23,6 @@ if [ -d "$ROOT_DIR/provider" ]; then
   cp -r "$ROOT_DIR/provider/"* "$TMP_DIR/provider/" || true
 fi
 
-# tools
-if [ -d "$ROOT_DIR/tools" ]; then
-  mkdir -p "$TMP_DIR/tools"
-  cp -r "$ROOT_DIR/tools/"* "$TMP_DIR/tools/" || true
-fi
-
 # provider_files and assets
 [ -d "$ROOT_DIR/provider_files" ] && cp -r "$ROOT_DIR/provider_files" "$TMP_DIR/" || true
 [ -d "$ROOT_DIR/_assets" ] && cp -r "$ROOT_DIR/_assets" "$TMP_DIR/" || true
@@ -45,8 +39,7 @@ echo "Created $RELEASE_ZIP"
 echo "Contents:" 
 unzip -l "$RELEASE_ZIP"
 
-echo "Quick verification: looking for top-level provider/ and tools/"
+echo "Quick verification: looking for top-level provider/"
 unzip -l "$RELEASE_ZIP" | awk '{print $4}' | grep -x 'provider/' || echo 'WARNING: provider/ missing'
-unzip -l "$RELEASE_ZIP" | awk '{print $4}' | grep -x 'tools/' || echo 'WARNING: tools/ missing'
 
 exit 0

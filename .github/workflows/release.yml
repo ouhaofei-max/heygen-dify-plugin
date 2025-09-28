@@ -25,12 +25,13 @@ jobs:
 
           # manifest and common root assets
           cp manifest.yaml tmp_release/manifest.yaml || true
-          for f in README.md PRIVACY.md LICENSE requirements.txt icon.svg heygen_dify_plugin.yaml tool.py; do
+          for f in README.md PRIVACY.md LICENSE requirements.txt heygen_dify_plugin.yaml tool.py; do
             [ -f "$f" ] && cp "$f" tmp_release/ || true
           done
 
-          # copy icon if not already copied
-          [ -f _assets/icon.svg ] && cp _assets/icon.svg tmp_release/icon.svg || true
+          # copy icon
+          mkdir -p tmp_release/_assets
+          cp _assets/icon.svg tmp_release/_assets/ || true
 
           # include difypkg if present
           [ -f heygen-dify-plugin.difypkg ] && cp heygen-dify-plugin.difypkg tmp_release/ || true

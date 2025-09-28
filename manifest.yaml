@@ -1,4 +1,4 @@
-version: "1.1.17"
+version: "1.1.18"
 type: plugin
 author: ouhaofei-max
 name: heygen_dify_plugin
@@ -24,10 +24,8 @@ resource:
 plugins:
   tools:
     - provider/heygen_dify_plugin.yaml
-assets:
-  - _assets/icon.svg
 meta:
-  version: "1.1.17"
+  version: "1.1.18"
   arch:
     - amd64
     - arm64

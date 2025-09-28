@@ -1,0 +1,13 @@
+identity:
+  name: heygen_dify_plugin
+  label:
+    en_US: heygen_dify_plugin
+    zh_Hans: heygen_dify_plugin
+  description:
+    en_US: "HeyGen Dify Plugin"
+  icon: icon.svg
+tools:
+  - tools/heygen_dify_plugin.yaml
+extra:
+  python:
+    source: provider/heygen_dify_plugin.py

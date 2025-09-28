@@ -1,0 +1,17 @@
+identity:
+  name: heygen_dify_plugin
+  label:
+    en_US: heygen_dify_plugin
+tool:
+  entrypoint: tools/tool.py:HeyGenTool
+  language: python
+  # icon removed to test manifest-only icon
+  description:
+    en_US: "HeyGen Tool"
+  inputs:
+    - name: audio_url
+      type: string
+      required: true
+  credentials:
+    - name: heygen_api_key
+      type: string

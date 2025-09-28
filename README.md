@@ -1,29 +1,57 @@
-<<<<<<< HEAD
-# HeyGen Dify 插件
+# HeyGen Dify Plugin
 
-## 简介
-本插件用于将 HeyGen API 集成到 Dify 工作流，实现音频转视频自动化。
+This plugin integrates the HeyGen API into Dify, allowing you to automate text-to-video generation by providing an audio URL. It's designed to work as a Dify Tool and leverages the HeyGen API to create videos from audio inputs.
 
-## 使用说明
-1. 上传 `dify_plugin.py` 和 `requirements.txt` 到 Dify 插件管理页面。
-2. 在插件参数中填写 `heygen_api_key`。
-3. 输入数据需包含 `audio_url` 或完整的 `variables` 字段。
-4. 输出为视频文件名、保存路径、视频下载链接等信息。
+## 🚀 Features
 
-## 依赖
-- Python 3.7+
-- requests
+- **Automated Video Generation**: Converts an audio file (via URL) into a video using a default HeyGen template.
+- **Simple Configuration**: Requires only a HeyGen API key and the audio URL to get started.
+- **Customizable Naming**: Allows specifying language and chapter for output file naming conventions.
+- **Real-time Feedback**: Provides status updates during the video generation process.
 
-## 主要文件
-- `dify_plugin.py`：插件主逻辑
-- `requirements.txt`：依赖声明
-- `manifest.yaml`：插件元数据
+## 📦 Installation & Usage
 
-## 注意事项
-- 建议不要将 API Key 写死在代码中，使用参数传递。
-- 视频命名格式为 `{lang}_ai_{chapter}_v{num}_a.mp4`，可根据实际需求调整。
-- 轮询等待视频生成，最长等待 150 秒。
-=======
-# heygen-dify-plugin
-/
->>>>>>> 9722b7b1273ea75d8d705557ae03599f959393a3
+1.  **Package the Plugin**: Compress the entire plugin directory into a `zip` file. The zip file should contain `manifest.yaml`, `requirements.txt`, the `tools/` directory, and other necessary files at the root level.
+2.  **Upload to Dify**:
+    *   Navigate to the "Tools" section in Dify.
+    *   Click "Create Tool" and select "Upload".
+    *   Upload the `zip` file you created.
+3.  **Add to Your App**: Once uploaded, you can add the HeyGen plugin to your Dify application and use it in your workflows.
+
+## 🛠️ Configuration
+
+When adding the tool, you will need to configure the following:
+
+### Credentials
+
+-   **HeyGen API Key** (`heygen_api_key`): Your API key from the HeyGen platform. You can obtain it from your [HeyGen account settings](https://app.heygen.com/settings/api-key).
+
+### Parameters
+
+-   **Audio URL** (`audio_url`): **(Required)** The public URL of the audio file you want to convert into a video.
+-   **Language** (`lang`): (Optional) The language code for the video (e.g., `en`, `zh`). Defaults to `zh`. This is used for naming the output file.
+-   **Chapter** (`chapter`): (Optional) The chapter number. Defaults to `1`. This is also used for naming the output file.
+
+## 📝 Output
+
+The plugin will return a JSON object containing the following information upon successful video generation:
+
+```json
+{
+  "video_filename": "zh_ai_1_v001_a.mp4",
+  "video_url": "https://.../video.mp4",
+  "video_id": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+}
+```
+
+-   `video_filename`: The generated name for the video file.
+-   `video_url`: The direct URL to download the generated video.
+-   `video_id`: The unique identifier for the video on the HeyGen platform.
+
+## 📄 License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
+
+
+
+

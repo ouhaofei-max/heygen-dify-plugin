@@ -13,15 +13,9 @@ mkdir -p "$TMP_DIR"
 
 # copy top-level files
 cp "$ROOT_DIR/manifest.yaml" "$TMP_DIR/" || true
-for f in README.md PRIVACY.md LICENSE requirements.txt icon.svg; do
+for f in README.md PRIVACY.md LICENSE requirements.txt icon.svg heygen_dify_plugin.yaml tool.py; do
   [ -f "$ROOT_DIR/$f" ] && cp "$ROOT_DIR/$f" "$TMP_DIR/" || true
 done
-
-# provider
-if [ -d "$ROOT_DIR/provider" ]; then
-  mkdir -p "$TMP_DIR/provider"
-  cp -r "$ROOT_DIR/provider/"* "$TMP_DIR/provider/" || true
-fi
 
 # provider_files and assets
 [ -d "$ROOT_DIR/provider_files" ] && cp -r "$ROOT_DIR/provider_files" "$TMP_DIR/" || true

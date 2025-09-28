@@ -13,7 +13,7 @@ mkdir -p "$TMP_DIR"
 
 # copy top-level files
 cp "$ROOT_DIR/manifest.yaml" "$TMP_DIR/" || true
-for f in README.md PRIVACY.md LICENSE requirements.txt; do
+for f in README.md PRIVACY.md LICENSE requirements.txt icon.svg; do
   [ -f "$ROOT_DIR/$f" ] && cp "$ROOT_DIR/$f" "$TMP_DIR/" || true
 done
 
@@ -25,7 +25,6 @@ fi
 
 # provider_files and assets
 [ -d "$ROOT_DIR/provider_files" ] && cp -r "$ROOT_DIR/provider_files" "$TMP_DIR/" || true
-[ -d "$ROOT_DIR/_assets" ] && cp -r "$ROOT_DIR/_assets" "$TMP_DIR/" || true
 [ -d "$ROOT_DIR/assets" ] && cp -r "$ROOT_DIR/assets" "$TMP_DIR/" || true
 
 # include difypkg if present

@@ -1,4 +1,4 @@
-version: "1.1.18"
+version: "1.1.19"
 type: plugin
 author: ouhaofei-max
 name: heygen_dify_plugin
@@ -25,7 +25,7 @@ plugins:
   tools:
     - provider/heygen_dify_plugin.yaml
 meta:
-  version: "1.1.18"
+  version: "1.1.19"
   arch:
     - amd64
     - arm64

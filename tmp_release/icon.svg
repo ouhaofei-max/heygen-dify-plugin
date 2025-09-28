@@ -17,15 +17,15 @@
   ~ DIFY_MARKETPLACE_TEMPLATE_ICON_DO_NOT_USE
   -->
 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g clip-path="url(#clip0_15253_95095)">
+<g clip-path="url(#clip0_15255_46435)">
 <rect width="40" height="40" fill="#0033FF"/>
-<g filter="url(#filter0_n_15253_95095)">
-<rect width="40" height="40" fill="url(#paint0_linear_15253_95095)"/>
+<g filter="url(#filter0_n_15255_46435)">
+<rect width="40" height="40" fill="url(#paint0_linear_15255_46435)"/>
 </g>
 <path d="M28 10C28.5523 10 29 10.4477 29 11V16C29 16.5523 28.5523 17 28 17H23V30C23 30.5523 22.5523 31 22 31H18C17.4477 31 17 30.5523 17 30V17H11.5C10.9477 17 10.5 16.5523 10.5 16V13.618C10.5 13.2393 10.714 12.893 11.0528 12.7236L16.5 10H28ZM23 12H16.9721L12.5 14.2361V15H19V29H21V15H23V12ZM27 12H25V15H27V12Z" fill="white"/>
 </g>
 <defs>
-<filter id="filter0_n_15253_95095" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_n_15255_46435" x="0" y="0" width="40" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feTurbulence type="fractalNoise" baseFrequency="2 2" stitchTiles="stitch" numOctaves="3" result="noise" seed="8033" />
@@ -39,16 +39,16 @@
 <feComponentTransfer in="noise1Clipped" result="color1">
 <feFuncA type="table" tableValues="0 0.06" />
 </feComponentTransfer>
-<feMerge result="effect1_noise_15253_95095">
+<feMerge result="effect1_noise_15255_46435">
 <feMergeNode in="shape" />
 <feMergeNode in="color1" />
 </feMerge>
 </filter>
-<linearGradient id="paint0_linear_15253_95095" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
-<stop stop-color="#1443FF"/>
-<stop offset="1" stop-color="#0031F5"/>
+<linearGradient id="paint0_linear_15255_46435" x1="0" y1="0" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+<stop stop-color="#1F4CFF"/>
+<stop offset="1" stop-color="#0033FF"/>
 </linearGradient>
-<clipPath id="clip0_15253_95095">
+<clipPath id="clip0_15255_46435">
 <rect width="40" height="40" fill="white"/>
 </clipPath>
 </defs>

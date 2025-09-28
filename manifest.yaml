@@ -1,4 +1,4 @@
-version: "1.1.25"
+version: "1.1.26"
 type: plugin
 author: ouhaofei-max
 name: heygen_dify_plugin
@@ -15,7 +15,7 @@ description:
   ja_JP: "HeyGen Dify Plugin"
   zh_Hans: "HeyGen Dify Plugin"
   pt_BR: "HeyGen Dify Plugin"
-icon: _assets/icon.svg
+icon: icon.svg
 resource:
   memory: 134217728
   permission:
@@ -25,7 +25,7 @@ plugins:
   tools:
     - heygen_dify_plugin.yaml
 meta:
-  version: "1.1.25"
+  version: "1.1.26"
   arch:
     - amd64
     - arm64

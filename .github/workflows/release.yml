@@ -30,8 +30,7 @@ jobs:
           done
 
           # copy icon
-          mkdir -p tmp_release/_assets
-          cp _assets/icon.svg tmp_release/_assets/ || true
+          cp _assets/icon.svg tmp_release/icon.svg || true
 
           # include difypkg if present
           [ -f heygen-dify-plugin.difypkg ] && cp heygen-dify-plugin.difypkg tmp_release/ || true

@@ -19,7 +19,6 @@ done
 
 # provider_files and assets
 [ -d "$ROOT_DIR/provider_files" ] && cp -r "$ROOT_DIR/provider_files" "$TMP_DIR/" || true
-[ -d "$ROOT_DIR/assets" ] && cp -r "$ROOT_DIR/assets" "$TMP_DIR/" || true
 
 # include difypkg if present
 [ -f "$ROOT_DIR/heygen-dify-plugin.difypkg" ] && cp "$ROOT_DIR/heygen-dify-plugin.difypkg" "$TMP_DIR/" || true

@@ -22,7 +22,7 @@ jobs:
           rm -rf tmp_release || true
           mkdir -p tmp_release
           # Copy manifest and other root-level assets
-          cp manifest.yaml tmp_release/ || true
+          cp manifest.yaml tmp_release/manifest.yaml || true
           cp README.md tmp_release/ || true
           cp PRIVACY.md tmp_release/ || true
           cp LICENSE tmp_release/ || true
@@ -31,8 +31,32 @@ jobs:
           if [ -f provider/heygen_dify_plugin.yaml ]; then
             cp provider/heygen_dify_plugin.yaml tmp_release/provider || true
           fi
-          # Copy tools, provider_files (actual python), assets
-          cp -r tools tmp_release/ || true
+          # Create a root-level 'tools' file (some installers expect a file named 'tools')
+          # Ensure no leftover 'tools' directory exists in tmp_release (we want a root-level file named 'tools')
+          rm -rf tmp_release/tools || true
+          # Create a root-level 'tools' file but make sure its internal python source points to tools_dir/tool.py
+          if [ -f tools/heygen_dify_plugin.yaml ]; then
+            # copy and patch the extra.python.source path to tools_dir
+            sed "s|source: tools/tool.py|source: tools_dir/\n  # patched to point to tools_dir/tool.py|" tools/heygen_dify_plugin.yaml > tmp_release/tools || cp tools/heygen_dify_plugin.yaml tmp_release/tools || true
+            # ensure the patched file contains correct source (fallback to simple copy if sed failed)
+          fi
+          # Copy original tools directory but rename to tools_dir to avoid name collision with root file
+          if [ -d tools ]; then cp -r tools tmp_release/tools_dir || true; fi
+          # Update tmp_release/manifest.yaml to reference the root-level tools file and entrypoint in tools_dir
+          if [ -f tmp_release/manifest.yaml ]; then
+            # set plugins.tools to reference root-level 'tools'
+            python3 - <<'PY'
+import yaml,sys
+p='tmp_release/manifest.yaml'
+with open(p,'r') as f:
+    m=yaml.safe_load(f)
+m['plugins']={'tools':['tools']}
+if 'meta' in m and 'runner' in m['meta']:
+    m['meta']['runner']['entrypoint']='tools_dir/tool.py:HeyGenTool'
+with open(p,'w') as f:
+    yaml.dump(m,f,allow_unicode=True)
+PY
+          fi
           if [ -d provider_files ]; then cp -r provider_files tmp_release/ || true; fi
           if [ -d _assets ]; then cp -r _assets tmp_release/ || true; fi
           if [ -d assets ]; then cp -r assets tmp_release/ || true; fi

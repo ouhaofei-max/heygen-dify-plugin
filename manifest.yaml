@@ -1,4 +1,4 @@
-version: "1.1.13"
+version: "1.1.14"
 type: tool
 author: ouhaofei-max
 name: heygen_dify_plugin
@@ -21,11 +21,12 @@ resource:
   permission:
     tool:
       enabled: true
-tool: heygen_dify_plugin
+tool:
+  name: heygen_dify_plugin
 assets:
   - _assets/icon.svg
 meta:
-  version: "1.1.13"
+  version: "1.1.14"
   arch:
     - amd64
     - arm64

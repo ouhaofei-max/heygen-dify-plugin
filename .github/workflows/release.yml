@@ -16,12 +16,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Zip plugin files
+      - name: Prepare and Zip plugin files
         run: |
+          # Ensure provider YAML is available at repository root as some installers expect a root-level provider file
+          if [ -f provider/heygen_dify_plugin.yaml ]; then cp provider/heygen_dify_plugin.yaml ./heygen_dify_plugin.yaml || true; fi
           # Package the plugin for release: include manifest, provider, tools, assets and generated difypkg if present
-          zip -r release.zip manifest.yaml provider tools _assets assets requirements.txt README.md PRIVACY.md LICENSE heygen-dify-plugin.difypkg || \
+          zip -r release.zip manifest.yaml heygen_dify_plugin.yaml provider tools _assets assets requirements.txt README.md PRIVACY.md LICENSE heygen-dify-plugin.difypkg || \
           # Fallback: if difypkg not present, still create zip without it
-          zip -r release.zip manifest.yaml provider tools _assets assets requirements.txt README.md PRIVACY.md LICENSE
+          zip -r release.zip manifest.yaml heygen_dify_plugin.yaml provider tools _assets assets requirements.txt README.md PRIVACY.md LICENSE
 
       - name: Create Release
         id: create_release

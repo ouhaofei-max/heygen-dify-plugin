@@ -1,0 +1,42 @@
+name: Verify Release Asset
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  verify-release-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download release.zip from the published release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          tag=$(jq -r .release.tag_name "$GITHUB_EVENT_PATH")
+          api="https://api.github.com/repos/$GITHUB_REPOSITORY/releases/tags/$tag"
+          echo "Querying $api"
+          url=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "$api" | jq -r '.assets[] | select(.name=="release.zip") | .browser_download_url')
+          if [ -z "$url" ] || [ "$url" = "null" ]; then
+            echo "release.zip asset not found for release $tag" >&2
+            exit 2
+          fi
+          echo "Downloading $url"
+          curl -L -H "Authorization: token $GITHUB_TOKEN" -o release.zip "$url"
+          echo "Downloaded release.zip"
+
+      - name: List release.zip contents
+        run: |
+          unzip -l release.zip
+
+      - name: Validate required entries in release.zip
+        run: |
+          set -euo pipefail
+          # Ensure there is a root-level file named 'provider'
+          unzip -l release.zip | awk '{print $4}' | grep -x 'provider' || (echo 'ERROR: provider file missing at zip root' && exit 2)
+          # Ensure there is a root-level file named 'tools'
+          unzip -l release.zip | awk '{print $4}' | grep -x 'tools' || (echo 'ERROR: tools file missing at zip root' && exit 2)
+          # Ensure tools_dir directory exists
+          unzip -l release.zip | grep -q '^.*tools_dir/' || (echo 'ERROR: tools_dir directory missing' && exit 2)
+          echo 'Verification passed: provider, tools and tools_dir are present.'

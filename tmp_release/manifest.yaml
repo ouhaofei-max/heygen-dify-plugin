@@ -1,0 +1,40 @@
+version: "1.0.0"
+type: plugin
+author: ouhaofei-max
+name: heygen_dify_plugin
+created_at: "2025-09-28T00:00:00Z"
+privacy: PRIVACY.md
+verified: false
+label:
+  en_US: heygen_dify_plugin
+  ja_JP: heygen_dify_plugin
+  zh_Hans: heygen_dify_plugin
+  pt_BR: heygen_dify_plugin
+description:
+  en_US: "HeyGen Dify Plugin"
+  ja_JP: "HeyGen Dify Plugin"
+  zh_Hans: "HeyGen Dify Plugin"
+  pt_BR: "HeyGen Dify Plugin"
+icon: icon.svg
+resource:
+  memory: 134217728
+  permission:
+    tool:
+      enabled: true
+plugins:
+  tools:
+    - tools/heygen_dify_plugin.yaml
+assets:
+  - _assets/icon.svg
+meta:
+  version: "1.0.0"
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.11"
+    entrypoint: tools/tool.py:HeyGenTool
+  created_at: "2025-09-28T00:00:00Z"
+  privacy: PRIVACY.md
+  verified: false

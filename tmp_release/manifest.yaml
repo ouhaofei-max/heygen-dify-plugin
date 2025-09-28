@@ -1,4 +1,4 @@
-version: "1.1.15"
+version: "1.1.16"
 type: plugin
 author: ouhaofei-max
 name: heygen_dify_plugin
@@ -23,18 +23,18 @@ resource:
       enabled: true
 plugins:
   tools:
-    - heygen_dify_plugin
+    - provider/heygen_dify_plugin.yaml
 assets:
   - _assets/icon.svg
 meta:
-  version: "1.1.15"
+  version: "1.1.16"
   arch:
     - amd64
     - arm64
   runner:
     language: python
     version: "3.11"
-    entrypoint: tools/tool.py:HeyGenTool
+    entrypoint: provider/tool.py:HeyGenTool
   created_at: "2025-09-28T00:00:00Z"
   privacy: PRIVACY.md
   verified: false

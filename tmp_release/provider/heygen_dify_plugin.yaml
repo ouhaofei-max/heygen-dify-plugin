@@ -1,0 +1,24 @@
+identity:
+  name: heygen_dify_plugin
+  author: ouhaofei-max
+  label:
+    en_US: heygen_dify_plugin
+    zh_Hans: heygen_dify_plugin
+description:
+  human:
+    en_US: "HeyGen Tool"
+    zh_Hans: "HeyGen 工具"
+  llm: "A tool to invoke HeyGen with an audio URL to generate video"
+parameters:
+  - name: audio_url
+    type: string
+    required: true
+    label:
+      en_US: Audio URL
+      zh_Hans: 音频链接
+    human_description:
+      en_US: The URL of the audio file to use for video generation
+      zh_Hans: 用于生成视频的音频文件 URL
+extra:
+  python:
+    source: provider/tool.py
